@@ -1,0 +1,72 @@
+<app-menu> </app-menu>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%" *ngFor="let data of projectData">
+        <mat-card class="mat-elevation-z4" >
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <mat-card-content>
+            <div class='card-title'>  {{data.projectTitle |titlecase }} </div> 
+            <div class='card-fund-raised'>  {{data.currentAmount }}$</div> 
+            <div class='card-fund-goal'>  Raised of {{data.goalAmount }}$</div> 
+            <div class="divider"> </div>
+
+            <mat-grid-list class='grey-color' cols="4" id="page">
+                <mat-grid-tile  id="left-sidebar">
+                    <span>Months:</span> <span><strong>0</strong></span>
+                </mat-grid-tile>
+                <mat-grid-tile id="main-content" colspan="2">
+                    <span>Days:</span> <span><strong>0</strong></span>
+                </mat-grid-tile>
+                <mat-grid-tile id="right-sidebar">
+                    <span>Hours:</span> <span><strong>0</strong></span>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <div class="divider"> </div>
+              
+              <section class="example-section">
+                <mat-progress-bar
+                    [color]= "warn"
+                    [value]="45"
+                    [bufferValue]="bufferValue">
+                </mat-progress-bar>
+                      <div style="position: absolute; padding: 10px; color: white;"> 45% </div>
+              </section>
+
+
+              <mat-grid-list cols="4" id="page" class='m14tb vdivide bggreen'>
+                <mat-grid-tile>  
+                    <div>
+                    <div class="minins"><strong>25%</strong></div>
+                    <div class="fsize10">RENTABILITY</div> 
+                    </div>
+                </mat-grid-tile>
+                    <mat-grid-tile id="main-content" colspan="2"> 
+                    <div>
+                        <div class="minins"><strong> $ 1000. </strong></div> 
+                        <span class="fsize10">MINIMAL INVESTMENT</span> 
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile id="right-sidebar"> 
+                <div>
+                    <div class="minins"><strong>3 Years</strong></div> 
+                    <span class="fsize10">DURATION</span>
+                </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+
+            <p class='grey-color'>
+              Building of 3 floors in the green area of Montreal
+            </p>
+          </mat-card-content>
+          <mat-card-actions class='submit'>
+        <div class='invest-button'>
+            <div class='invest-button'>
+            <button mat-raised-button color="primary">INVEST</button>
+        </div>
+        </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    </div>

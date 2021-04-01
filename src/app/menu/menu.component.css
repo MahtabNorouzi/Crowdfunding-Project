@@ -6,14 +6,13 @@ body {
 }
 
 .basic-container {
-  padding: 50px; 
+    padding: 50px;
+}
+.basic-container a {
+    text-decoration: none;
+    color: yellow;
 }
 
-.basic-container a {
-      text-decoration: none;
-      color: yellow;
-} 
-  
 
 .version-info {
   color: black;
@@ -25,15 +24,14 @@ body {
 
 /* here's what you're looking for B-) */
 mat-nav-list.list-horizontal {
-  padding: 0;
+    padding: 0;
+}
+mat-nav-list.list-horizontal .mat-list-item {
+    display: inline-block;
+    height: auto;
+    width: auto;
 }
 
-mat-nav-list.list-horizontal  .mat-list-item {
-      display: inline-block;
-      height: auto;
-      width: auto;
-
-  }
 
 .mat-toolbar-row, .mat-toolbar-single-row{
   height: unset !important;
@@ -50,4 +48,10 @@ mat-nav-list.list-horizontal  .mat-list-item {
 
 .basic-container{
   padding: 0px;
+}
+
+.list{
+    display: inline-block;
+    height: auto;
+    width: auto;
 }

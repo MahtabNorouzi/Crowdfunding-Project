@@ -68,7 +68,7 @@ export class Web3Service {
       this.accountsObservable.next(accs);
       this.accounts = accs;
     }
-
+    
     this.ready = true;
   }
 }

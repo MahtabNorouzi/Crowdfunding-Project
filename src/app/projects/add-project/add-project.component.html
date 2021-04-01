@@ -1,0 +1,27 @@
+<div>
+<app-menu> </app-menu>
+</div>
+
+<form [formGroup]="addActionForm" (ngSubmit)="submit()">
+<div class="contenedor">
+    <mat-form-field>
+      <input matInput formControlName="projectName" type="string" placeholder="Enter a project name">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput formControlName="projectDescription" type="string" placeholder="Enter a description">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="duration" type="number" placeholder="Duration">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="goal" type="number" placeholder="Goal">
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" >Add</button>
+   
+
+  </div>
+</form>
