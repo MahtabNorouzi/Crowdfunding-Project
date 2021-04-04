@@ -95,3 +95,10 @@ hr.line {
     align-content: center;
     align-items: center;
 }
+
+.proj-image {
+ width: 100%;
+ max-height: 250px;
+ margin-left: 0%;
+     
+}

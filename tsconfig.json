@@ -21,6 +21,14 @@
       "dom"
     ],
     "module": "es2015",
-    "baseUrl": "./"
-  }
+    "baseUrl": "./",
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "types" : ["node"]
+}
 }

@@ -19,7 +19,9 @@ contract Crowdfunding {
         string projectTitle,
         string projectDesc,
         uint256 deadline,
-        uint256 goalAmount
+        uint256 goalAmount,
+        string projectImage
+        //string projectRentability
     );
 
     /** @dev Function to start a new project.
@@ -27,15 +29,20 @@ contract Crowdfunding {
       * @param description Brief description about the project
       * @param durationInDays Project deadline in days
       * @param amountToRaise Project goal in wei
+      * @param image Project Image
+      * @param rentability Project rentability
       */
     function startProject(
         string calldata title,
         string calldata description,
         uint durationInDays,
-        uint amountToRaise
+        uint amountToRaise,
+        string calldata image,
+        uint rentability,
+        uint minInvestment
     ) external {
         uint raiseUntil = block.timestamp.add(durationInDays.mul(1 days));
-        Project newProject = new Project(msg.sender, title, description, raiseUntil, amountToRaise);
+        Project newProject = new Project(msg.sender, title, description, raiseUntil, amountToRaise, image, rentability, minInvestment);
         projects.push(newProject);
         emit ProjectStarted(
             address(newProject),
@@ -43,7 +50,9 @@ contract Crowdfunding {
             title,
             description,
             raiseUntil,
-            amountToRaise
+            amountToRaise,
+            image
+            //rentability
         );
     }                                                                                                                                   
 
@@ -74,6 +83,9 @@ contract Project {
     uint public raiseBy;
     string public title;
     string public description;
+    string public image;
+    uint public rentability;
+    uint public minInvestment;
     State public state = State.Fundraising; // initialize on create
     mapping (address => uint) public contributions;
 
@@ -100,7 +112,10 @@ contract Project {
         string memory projectTitle,
         string memory projectDesc,
         uint fundRaisingDeadline,
-        uint goalAmount
+        uint goalAmount,
+        string memory projectImage,
+        uint projectRentability,
+        uint minimalInvestment
     ) public {
         creator = projectStarter;
         title = projectTitle;
@@ -108,12 +123,15 @@ contract Project {
         amountGoal = goalAmount;
         raiseBy = fundRaisingDeadline;
         currentBalance = 0;
+        image = projectImage;
+        rentability = projectRentability;
+        minInvestment = minimalInvestment;
     }
 
     /** @dev Function to fund a certain project.
       */
     function contribute() external inState(State.Fundraising) payable {
-        require(msg.sender != creator);
+        //require(msg.sender != creator);
         contributions[msg.sender] = contributions[msg.sender].add(msg.value);
         currentBalance = currentBalance.add(msg.value);
         emit FundingReceived(msg.sender, msg.value, currentBalance);
@@ -176,7 +194,10 @@ contract Project {
         uint256 deadline,
         State currentState,
         uint256 currentAmount,
-        uint256 goalAmount
+        uint256 goalAmount,
+        string memory projectImage,
+        uint256 projectRentability,
+        uint256 minimalInvestment
     ) {
         projectStarter = creator;
         projectTitle = title;
@@ -185,5 +206,8 @@ contract Project {
         currentState = state;
         currentAmount = currentBalance;
         goalAmount = amountGoal;
+        projectImage = image;
+        projectRentability = rentability;
+        minimalInvestment = minInvestment;
     }
 }

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import {MetaModule} from './meta/meta.module';
@@ -25,14 +26,15 @@ import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaM
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {MatMenuModule} from '@angular/material/menu'; 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+
 
 import {
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
-  MatButtonModule,
   MatButtonToggleModule,
-  MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
@@ -60,6 +62,8 @@ import {
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { InvestmentContractDialogComponent } from './investment-contract-dialog/investment-contract-dialog.component';
+import { InvestmentDialogComponent } from './investment-dialog/investment-dialog.component';
 
 const routes: Routes = [
   { path: 'listprojects', component: ListProjectsComponent },
@@ -74,7 +78,9 @@ const routes: Routes = [
     AddProjectComponent,
     ListProjectsComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    InvestmentContractDialogComponent,
+    InvestmentDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -95,7 +101,10 @@ const routes: Routes = [
     FlexLayoutModule,
     MatProgressBarModule,
     MatMenuModule,
-    MatCarouselModule.forRoot()
+    MatCarouselModule.forRoot(),
+    MaterialFileInputModule,
+    MatFileUploadModule,
+    MatDialogModule
   ],
   providers: [ProjectService, 
               StyleUtils,
@@ -107,7 +116,10 @@ const routes: Routes = [
             ],
   bootstrap: [AppComponent],
 
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  
+  entryComponents: [InvestmentContractDialogComponent,
+                   InvestmentDialogComponent]
   
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 <app-menu> </app-menu>
 <div class="content">
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%" *ngFor="let data of projectData">
+      <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%" *ngFor="let data of projectData;  let i = index;">
         <mat-card class="mat-elevation-z4" >
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <img mat-card-image class='proj-image' src="https://ipfs.infura.io/ipfs/{{data.projectImage}}">
           <mat-card-content>
             <div class='card-title'>  {{data.projectTitle |titlecase }} </div> 
             <div class='card-fund-raised'>  {{data.currentAmount }}$</div> 
@@ -36,19 +36,19 @@
               <mat-grid-list cols="4" id="page" class='m14tb vdivide bggreen'>
                 <mat-grid-tile>  
                     <div>
-                    <div class="minins"><strong>25%</strong></div>
+                    <div class="minins"><strong>{{data.projectRentability}}%</strong></div>
                     <div class="fsize10">RENTABILITY</div> 
                     </div>
                 </mat-grid-tile>
                     <mat-grid-tile id="main-content" colspan="2"> 
                     <div>
-                        <div class="minins"><strong> $ 1000. </strong></div> 
+                        <div class="minins"><strong> $ {{data.minimalInvestment}} </strong></div> 
                         <span class="fsize10">MINIMAL INVESTMENT</span> 
                     </div>
                 </mat-grid-tile>
                 <mat-grid-tile id="right-sidebar"> 
                 <div>
-                    <div class="minins"><strong>3 Years</strong></div> 
+                    <div class="minins"><strong>{{data.deadline}}</strong></div> 
                     <span class="fsize10">DURATION</span>
                 </div>
                 </mat-grid-tile>
@@ -56,13 +56,13 @@
 
 
             <p class='grey-color'>
-              Building of 3 floors in the green area of Montreal
+              {{data.projectDesc}}
             </p>
           </mat-card-content>
           <mat-card-actions class='submit'>
         <div class='invest-button'>
             <div class='invest-button'>
-            <button mat-raised-button color="primary">INVEST</button>
+            <button mat-raised-button color="primary" (click)="openDialog(data, i)">INVEST</button>
         </div>
         </div>
           </mat-card-actions>

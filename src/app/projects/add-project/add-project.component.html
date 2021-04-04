@@ -13,14 +13,42 @@
     </mat-form-field>
 
     <mat-form-field>
+    <input matInput formControlName="projectRentability" type="number" placeholder="Enter a rentability en %" value='0%'> 
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="minInvestment" type="number" placeholder="Enter a minimal"> 
+      </mat-form-field>
+
+    <mat-form-field>
         <input matInput formControlName="duration" type="number" placeholder="Duration">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput formControlName="goal" type="number" placeholder="Goal">
+        <input matInput formControlName="goal" type="string" placeholder="Goal">
     </mat-form-field>
-    
+
+    <mat-form-field>
+        <ngx-mat-file-input #removableInput formControlName="requiredfile" placeholder="Add an image"  [accept]="'.jpeg'" required></ngx-mat-file-input>
+        <!--mat-icon matSuffix>folder</mat-icon-->
+        <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error *ngIf="addActionForm.get('requiredfile').hasError('required')">
+          Please select an image
+        </mat-error>
+        <!--mat-error *ngIf="addActionForm.get('requiredfile').hasError('maxContentSize')">
+          The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}} ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize
+          | byteFormat}}).
+        </mat-error-->
+    </mat-form-field>
+
+   
+
     <button mat-raised-button color="primary" >Add</button>
+
+    <div class='bottom'> </div>
+    <mat-progress-bar *ngIf='loading' mode='indeterminate'></mat-progress-bar>
    
 
   </div>
