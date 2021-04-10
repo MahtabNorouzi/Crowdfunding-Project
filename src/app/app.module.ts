@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { InvestmentContractDialogComponent } from './investment-contract-dialog/investment-contract-dialog.component';
 import { InvestmentDialogComponent } from './investment-dialog/investment-dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   { path: 'listprojects', component: ListProjectsComponent },
@@ -80,7 +82,8 @@ const routes: Routes = [
     HomeComponent,
     MenuComponent,
     InvestmentContractDialogComponent,
-    InvestmentDialogComponent
+    InvestmentDialogComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -104,7 +107,8 @@ const routes: Routes = [
     MatCarouselModule.forRoot(),
     MaterialFileInputModule,
     MatFileUploadModule,
-    MatDialogModule
+    MatDialogModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ProjectService, 
               StyleUtils,

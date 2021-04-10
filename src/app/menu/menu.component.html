@@ -2,30 +2,6 @@
 
     <mat-toolbar color="secondary">
         <mat-nav-list class="list-horizontal">
-
-            <mat-list-item class='list'>
-                <button mat-menu-item (click)='redirectHome()'>Home</button>
-            </mat-list-item>
-
-            <mat-list-item class='list'>
-                <button mat-menu-item (click)='redirectProjects()'>Projects</button>
-            </mat-list-item>
-
-            <mat-list-item class='list'>
-                <button mat-menu-item (click)='redirectProjectAdd()'>Add Projects</button>
-            </mat-list-item>
-
-            <mat-list-item class='list'>
-                <button mat-menu-item>About Us</button>
-            </mat-list-item>
-
-            <mat-list-item class='list'>
-                <button mat-menu-item>Contact</button>
-            </mat-list-item>
-
-            <mat-list-item class='list'>
-                <button mat-menu-item>Search</button>
-            </mat-list-item>
             <mat-menu #searchmenu="matMenu" [overlapTrigger]="false">
                 <button mat-menu-item>
                     <mat-icon>home</mat-icon>
@@ -41,12 +17,35 @@
                 </button>
             </mat-menu>
 
-
-
-
         </mat-nav-list>
     </mat-toolbar>
     <div class="basic-container">
 
     </div>
 </div>
+
+<mdb-navbar SideClass="navbar navbar-light blue-grey lighten-5">
+    <mat-list-item class='list'>
+        <button mat-menu-item (click)='redirectHome()'>Home</button>
+    </mat-list-item>
+
+    <mat-list-item class='list'>
+        <button mat-menu-item (click)='redirectProjects()'>Projects</button>
+    </mat-list-item>
+
+    <mat-list-item class='list'>
+        <button mat-menu-item (click)='redirectProjectAdd()'>Add Projects</button>
+    </mat-list-item>
+
+    <mat-list-item class='list'>
+        <button mat-menu-item>About Us</button>
+    </mat-list-item>
+
+    <mat-list-item class='list'>
+        <button mat-menu-item>Contact</button>
+    </mat-list-item>
+
+    <mat-list-item class='list'>
+        <button mat-menu-item>Search</button>
+    </mat-list-item>
+  </mdb-navbar>
