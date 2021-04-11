@@ -102,3 +102,16 @@ hr.line {
  margin-left: 0%;
      
 }
+
+#loadimg {
+    width: 500px;
+}
+
+#link {
+    color: rgba(131, 120, 23, 0.671);
+}
+
+.text {
+    font-family: Capriola , sans-serif !important;
+    text-align: center;
+}

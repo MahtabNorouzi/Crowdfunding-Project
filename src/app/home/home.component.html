@@ -1,7 +1,7 @@
 
 <app-menu> </app-menu>
 
-<mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="auto" proportion="36"
+<!-- <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="auto" proportion="36"
     slides="3" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false"
     orientation="ltr">
     <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
@@ -18,13 +18,57 @@
         </div>
     </mat-carousel-slide>
 
-</mat-carousel>
+</mat-carousel> -->
 
-<div style="align-items: center; justify-content: center">
+<!-- <div style="align-items: center; justify-content: center">
 
     <h2 style="text-align: center;">
         Crowdfunding inmobiliario / Financiamiento colectivo en bienes raíce </h2>
     <h3 style="text-align: center;"> Agrupamos las inversiones de pequeños, medianos y grandes ahorradores, para
         transformarlos en grandes inversionistas de bienes raíces.</h3>
 
+</div> -->
+
+<div fxLayout="column" fxLayoutAlign="space-around center" id="main">
+    <br><br><br>
+    <br><br><br>
+    <div>
+        <p id="titr">Real estate crowdfunding / Collective financing in real estate</p> <br>
+        <p id="text2">We group the investments of small, medium and large savers, <br> to transform them into large real estate investors.</p>
+
+    </div>
+<br><br><br><br>
+    <div>
+        <div fxLayout="row" fxLayoutAlign="space-around" class="middle">
+
+            <div>
+                <img src="/assets/images/Image3@1x.png" alt="">
+                <br><br>
+                Yields up to
+                <br>
+                15% - 20%
+            </div>
+            <div fxFlexOffset="40">
+                <img src="/assets/images/Image4@1x.png" alt="">
+                <br><br>
+                Minimum investments from
+                <br>
+                $ 300,000
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+
+    <div>
+        <a href="/addprojects" class="button"> <b> ADD YOUR PROJECT NOW! </b></a>
+
+    </div>
+    <br><br>
+    <br><br>
+
+
 </div>
+
+<app-footer></app-footer>
