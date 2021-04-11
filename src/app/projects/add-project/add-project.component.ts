@@ -98,7 +98,7 @@ export class AddProjectComponent implements OnInit {
   }
 
 
-  submit(): void {
+submit(): void {
     let buffer: any;
   
     const file = this.addActionForm.get('requiredfile').value.files[0];

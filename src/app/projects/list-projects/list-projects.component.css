@@ -102,3 +102,11 @@ hr.line {
  margin-left: 0%;
      
 }
+
+.infoi{
+    z-index: 10; 
+  
+    position: absolute;
+    top: 20;
+    left: 50;
+}

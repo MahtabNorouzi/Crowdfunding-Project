@@ -41,7 +41,7 @@ contract Crowdfunding {
         uint rentability,
         uint minInvestment
     ) external {
-        uint raiseUntil = block.timestamp.add(durationInDays.mul(1 days));
+        uint raiseUntil = now.add(durationInDays.mul(1 days));
         Project newProject = new Project(msg.sender, title, description, raiseUntil, amountToRaise, image, rentability, minInvestment);
         projects.push(newProject);
         emit ProjectStarted(
@@ -92,7 +92,7 @@ contract Project {
     // Event that will be emitted whenever funding will be received
     event FundingReceived(address contributor, uint amount, uint currentTotal);
     // Event that will be emitted whenever the project starter has received the funds
-    event CreatorPaid(address recipient);
+    event CreatorPaid(address recipient, uint value);
 
     // Modifier to check current state
     modifier inState(State _state) {
@@ -143,7 +143,8 @@ contract Project {
     function checkIfFundingCompleteOrExpired() public {
         if (currentBalance >= amountGoal) {
             state = State.Successful;
-            payOut();
+            //payOut();
+            firstPayOut();
         } else if (block.timestamp > raiseBy)  {
             state = State.Expired;
         }
@@ -157,7 +158,7 @@ contract Project {
         currentBalance = 0;
 
         if (creator.send(totalRaised)) {
-            emit CreatorPaid(creator);
+            emit CreatorPaid(creator, totalRaised);
             return true;
         } else {
             currentBalance = totalRaised;
@@ -166,6 +167,25 @@ contract Project {
 
         return false;
     }
+
+     /** @dev Function to give the received funds to project starter.
+      */
+    function firstPayOut() internal inState(State.Successful) returns (bool) {
+        uint256 totalRaised = currentBalance;
+        uint256 amoutToSend = (totalRaised * 30)/100;
+
+        if (creator.send(amoutToSend)) {
+            emit CreatorPaid(creator, amoutToSend);
+            currentBalance = totalRaised - amoutToSend;
+            return true;
+        } else {
+            currentBalance = totalRaised;
+            state = State.Successful;
+        }
+
+        return false;
+    }
+
 
     /** @dev Function to retrieve donated amount when a project expires.
       */

@@ -44,6 +44,8 @@ export class ListProjectsComponent implements OnInit {
 
   async getProjects() {
     let projectsList=[];
+    var now = new Date().getTime();
+    var timeleft;
     // Operations for retrieving all existing projects will be here!
     console.log('Get projects!');
 
@@ -67,11 +69,17 @@ export class ListProjectsComponent implements OnInit {
           .then((res) => {
             res.goalAmount = Web3.utils.fromWei(res.goalAmount, 'ether'),
             res.currentAmount = Web3.utils.fromWei(res.currentAmount, 'ether'),
-            console.log('res....', res)
-            console.log('resdatos....:', res.goalAmount.toString())
-            console.log('fundRaisingDeadline....:', res.deadline.toString()) 
-            console.log('fundRaisingDeadline....:', res.currentAmount.toString()) 
-            console.log('Title....:', res.projectTitle) 
+            console.log('res.goalAmount.:', res.goalAmount),
+            console.log('res.currentAmount.:', res.currentAmount),
+            res.raised = (res.currentAmount * 100) / res.goalAmount,
+            timeleft = (new Date(res.deadline* 1000)).getTime()  - now,
+            res.day = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+            res.hour = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            res.minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+            //var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+            res.deadline = (new Date(res.deadline* 1000)).getDate(),
+            res.state = res.currentState.toString(10),
+            res.sentToOwner = res.goalAmount - res.currentAmount,
             this.projectData.push(res);
 
           });
@@ -123,16 +131,15 @@ async fundProject(data, amount, index) {
     data.contribute({ 
       from: this.account,
       value: Web3.utils.toWei(amount, 'ether'),
-    }).send()
-    .then((res) => {
+    }).then((res) => {
     console.log('res, event ...:', res)
-    console.log('res, 2 ...:', res.receipt)
-    const newTotal = parseInt(res.events.FundingReceived.returnValues.currentTotal, 10);
-    const projectGoal = parseInt(data.goalAmount, 10);
-    data.currentAmount = newTotal
-    if (newTotal >= projectGoal) {
-      data.currentState = 2;
-    }
+    //console.log('res, 2 ...:', res.receipt)
+    //const newTotal = parseInt(res.events.FundingReceived.returnValues.currentTotal, 10);
+    //const projectGoal = parseInt(data.goalAmount, 10);
+    //data.currentAmount = newTotal
+    //if (newTotal >= projectGoal) {
+      //data.currentState = 2;
+    //}
 });
   });
 })
