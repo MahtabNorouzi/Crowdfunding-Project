@@ -76,7 +76,7 @@ export class AddProjectComponent implements OnInit {
           this.addActionForm.value.projectName,
           this.addActionForm.value.projectDescription,
           this.addActionForm.value.duration,
-          Web3.utils.toWei(this.addActionForm.value.goal, 'ether'),
+          Web3.utils.toWei(this.addActionForm.value.goal.toString(), 'ether'),
           this.hash,
           this.addActionForm.value.projectRentability,
           this.addActionForm.value.minInvestment,

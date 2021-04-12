@@ -30,19 +30,28 @@
 
   <div class="child-2" fxFlex="40">
     <!-- Default form subscription -->
-    <form [formGroup]="addActionForm" (ngSubmit)="submit()" id="form" class="text-center border border-light p-5">
+    <form [formGroup]="addActionForm" (ngSubmit)="submit()" id="form" class="border border-light p-5">
 
-      <p class="h4 mb-4">Enter your information</p>
-
-      <p>You can add your project here and look for investors!</p>
+      <p class="h4 mb-4" id="title">Enter your information</p>
       <br>
 
-      <input formControlName="projectName" type="text" class="form-control mb-4" placeholder="Title">
-      <input formControlName="projectDescription" type="text" class="form-control mb-4" placeholder="Description">
-      <input formControlName="projectRentability" type="text" class="form-control mb-4" placeholder="Title">
-      <input formControlName="minInvestment" type="text" class="form-control mb-4" placeholder="Minimum">
-      <input formControlName="duration" type="text" class="form-control mb-4" placeholder="Duration">
-      <input formControlName="goal" type="text" class="form-control mb-4" placeholder="Goal">
+      <label class="label">Title:</label>
+      <input formControlName="projectName" type="text" class="form-control mb-4">
+
+      <label class="label">Description:</label>
+      <input formControlName="projectDescription" type="text" class="form-control mb-4">
+
+      <label class="label">Rentability:</label>
+      <input formControlName="projectRentability" type="number" class="form-control mb-4">
+
+      <label class="label">Minimum Investment::</label>
+      <input formControlName="minInvestment" type="number" class="form-control mb-4">
+
+      <label class="label">Duration:</label>
+      <input formControlName="duration" type="number" class="form-control mb-4">
+
+      <label class="label">Goal:</label>
+      <input formControlName="goal" type="number" value=" " class="form-control mb-4">
 
       <mat-form-field [ngStyle]="{'width': '100%'}">
 

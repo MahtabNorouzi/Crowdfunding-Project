@@ -1,3 +1,5 @@
+
+
 .contenedor {
     display: flex;
     flex-direction: column;
@@ -10,18 +12,11 @@
 }
 
 #left-title {
-    font-family: Avenir /* Replace with your custom font */, sans-serif !important; 
-    /* Add !important to overwrite all elements */
+    font-family: Avenir, sans-serif !important; 
     font-size: 240%;
     color: grey;
-    /* background-color: yellow; */
 
 }
-
-/* {
-    background-color: lightblue;
-    width: 200px;
-} */
 
 #faq {
     width: 180px;
@@ -40,4 +35,14 @@
 
 #form{
     width: 90%;
+}
+
+#title {
+    text-align: center;
+}
+
+.label {
+    font-family: Avenir, sans-serif !important; 
+
+    font-size: smaller;
 }
