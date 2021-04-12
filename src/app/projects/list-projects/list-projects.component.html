@@ -1,4 +1,14 @@
 <app-menu> </app-menu>
+
+<div *ngIf="!projectData.length" fxLayout="column" fxLayoutAlign="space-around center">
+  <img id="loadimg" class="center" src="/assets/images/load2.png" alt="">
+  <div class="text">
+    <p>There is no projects here yet.</p>
+    <p>Feel free to <a href="/addprojects" id="link"> <b>add</b> </a> one :)</p> <br>
+    <br><br><br><br><br><br><br>
+  </div>
+</div>
+
 <div class="content">
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
       <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%" *ngFor="let data of projectData;  let i = index;">
@@ -103,3 +113,5 @@
       </div>
     </div>
     </div>
+
+    <app-footer></app-footer>
