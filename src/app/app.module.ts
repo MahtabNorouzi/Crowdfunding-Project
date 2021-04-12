@@ -67,13 +67,15 @@ import { InvestmentDialogComponent } from './investment-dialog/investment-dialog
 import { FooterComponent } from './footer/footer.component';
 import { ProjectOwnerComponent } from './projects/project-owner/project-owner.component';
 import { RequireMoneyDialogComponent } from './require-money-dialog/require-money-dialog.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 const routes: Routes = [
   { path: 'listprojects', component: ListProjectsComponent },
   { path: 'addprojects', component: AddProjectComponent },  
   { path: 'home', component: HomeComponent },
   { path: 'projectOwner', component: ProjectOwnerComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full'} 
+  { path: '', redirectTo: '/home', pathMatch: 'full'} ,
+  { path: 'projectdetail', component: ProjectDetailComponent },
 ];
 
 @NgModule({
@@ -87,7 +89,8 @@ const routes: Routes = [
     InvestmentDialogComponent,
     FooterComponent,
     ProjectOwnerComponent,
-    RequireMoneyDialogComponent
+    RequireMoneyDialogComponent,
+    ProjectDetailComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

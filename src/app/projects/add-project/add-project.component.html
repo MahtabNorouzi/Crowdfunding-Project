@@ -1,8 +1,4 @@
-<div>
 <app-menu> </app-menu>
-</div>
-
-
 
 <br><br>
 <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -77,54 +73,3 @@
 
 <br><br><br><br>
 <app-footer> </app-footer>
-
-
-
-
-<!-- <form [formGroup]="addActionForm" (ngSubmit)="submit()">
-<div class="contenedor">
-    <mat-form-field>
-      <input matInput formControlName="projectName" type="string" placeholder="Enter a project name">
-    </mat-form-field>
-  
-    <mat-form-field>
-        <input matInput formControlName="projectDescription" type="string" placeholder="Enter a description">
-    </mat-form-field>
-
-    <mat-form-field>
-    <input matInput formControlName="projectRentability" type="number" placeholder="Enter a rentability en %" value='0%'> 
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput formControlName="minInvestment" type="number" placeholder="Enter a minimal"> 
-      </mat-form-field>
-
-    <mat-form-field>
-        <input matInput formControlName="duration" type="number" placeholder="Duration">
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput formControlName="goal" type="string" placeholder="Goal">
-    </mat-form-field>
-
-    <mat-form-field>
-        <ngx-mat-file-input #removableInput formControlName="requiredfile" placeholder="Add an image"  [accept]="'.jpeg'" required></ngx-mat-file-input>
-        <!--mat-icon matSuffix>folder</mat-icon-->
-        <!-- <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
-          <mat-icon>clear</mat-icon>
-        </button>
-        <mat-error *ngIf="addActionForm.get('requiredfile').hasError('required')">
-          Please select an image
-        </mat-error>
-    </mat-form-field>
-
-   
-
-    <button mat-raised-button color="primary" >Add</button>
-
-    <div class='bottom'> </div>
-    <mat-progress-bar *ngIf='loading' mode='indeterminate'></mat-progress-bar>
-   
-
-  </div>
-</form>  -->

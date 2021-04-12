@@ -5,3 +5,8 @@
 ::ng-deep .cdk-overlay-pane{
     width: 50% !important;
 }
+
+.title {
+    /* font-family:  FajallaOne, sans-serif !important; */
+    font-size: larger;
+}

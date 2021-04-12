@@ -18,7 +18,7 @@
             <img  *ngIf= 'data.state==0' src="assets/funding-stamp.jpeg" height="40" width="62"/>
             <img  *ngIf= 'data.state==1' src="assets/expired-red.jpeg" height="40" width="62"/>
         </div>
-          <img mat-card-image class='proj-image' src="https://ipfs.infura.io/ipfs/{{data.projectImage}}">
+          <img mat-card-image class='proj-image' (click)="seeDetails(data.projectImage)" src="https://ipfs.infura.io/ipfs/{{data.projectImage}}">
           <mat-card-content>
             <div class='card-title'>  {{data.projectTitle |titlecase }} </div> 
             <div>

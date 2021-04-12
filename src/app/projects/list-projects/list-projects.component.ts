@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Web3Service} from '../../util/web3.service';
 import Web3 from 'web3';
+import { Router } from '@angular/router';
+import { DataService } from "../../data.service";
+
+
 
 declare let require: any;
 const project_artifacts = require('../../../../build/contracts/Project.json');
@@ -28,19 +32,23 @@ export class ListProjectsComponent implements OnInit {
    projectContractList = [];
    projectData = [];
 
+   test = "ishala kar konam:))";
+
    projectContract:any;
-  constructor(private web3Service: Web3Service, public dialog: MatDialog) { }
+  constructor(private data: DataService, private web3Service: Web3Service, private route: Router, public dialog: MatDialog) {
+
+  }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.test = message);
+
     this.watchAccount();
     this.web3Service.artifactsToContract(crowdfunding_artifacts)
     .then((CrowdfundingAbstraction) => {
      
       this.crowdData = CrowdfundingAbstraction;
       this.getProjects();
-    });
-
-    
+    });    
   }
 
   async getProjects() {
@@ -180,4 +188,14 @@ watchAccount() {
    
   });
 }
+
+// newMessage() {
+// }
+
+seeDetails(imgsrc) {
+  console.log(imgsrc);
+  this.route.navigate(['/projectdetail']);
+  this.data.changeMessage(imgsrc);
+ }
+
 }
