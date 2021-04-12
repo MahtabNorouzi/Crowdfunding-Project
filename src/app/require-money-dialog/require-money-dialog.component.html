@@ -1,0 +1,15 @@
+
+<div  >
+<h2> Enter the amount of money to require for the project </h2> <h1 class='center'>{{ projectTitle}}</h1>
+<div>
+    <mat-form-field>
+        <input matInput [(ngModel)]="investmentAmount" placeholder="Enter amount (en ETH)">
+    </mat-form-field>
+</div>
+<div>
+
+    <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="closeDialog()" cdkFocusInitial>Request Money</button>
+</div>
+
+</div>

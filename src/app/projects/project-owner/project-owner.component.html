@@ -70,26 +70,20 @@
             </p>
           </mat-card-content>
           <mat-card-actions class='submit'>
-        <div *ngIf= 'data.state!=2' class='invest-button'>
-            <div class='invest-button'>
-            <button   mat-raised-button color="primary" (click)="openDialog(data, i)">INVEST</button>
+        <div *ngIf= 'data.state==2 && data.requestValue==0' class=''>
+            <div class=''>
+            <button   mat-raised-button color="primary" (click)="openDialog(data, i)">SPENDING REQUEST</button>
+            </div>
+       </div>
+
+      <div *ngIf= 'data.state==2 && data.requestValue > 0' class=''>
+            <div class=''>
+            <button   mat-raised-button disabled color="primary" >ONGOING SPENDING REQUEST</button>
             </div>
        </div> 
-
-      <div *ngIf= 'data.state==2 && data.requestValue > 0 && !data.approvedRequest' class=''> 
-            <div class=''>
-            <button   mat-raised-button color="primary" (click)="openDialogVote(data, i)">VOTE FOR SPENDING REQUEST</button>
-            </div>
-       </div>
-
-       <div *ngIf= 'data.state==2 && data.requestValue > 0 && data.approvedRequest' class=''>
-            <div class=''>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">done</mat-icon> REQUEST APPROVED 
-            </div>
-       </div>
      
        <section *ngIf= 'data.state==2' class="example">
-           <div> Sent to the owner: </div>
+           <div> Investment received: </div>
            <mat-progress-bar
                [color]= "warn"
                [value]="data.sentToOwner"

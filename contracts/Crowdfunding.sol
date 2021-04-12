@@ -1,6 +1,7 @@
 
 // We will be using Solidity version 0.5.4
-pragma solidity ^0.5.0;
+//pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
 // Importing OpenZeppelin's SafeMath Implementation
 //import 'SafeMath.sol';
 import "./SafeMath.sol";
@@ -56,14 +57,31 @@ contract Crowdfunding {
         );
     }                                                                                                                                   
 
+
+
     /** @dev Function to get all projects' contract addresses.
       * @return A list of all projects' contract addreses
       */
     function returnAllProjects() external view returns(Project[] memory){
         return projects;
     }
-}
 
+      /** @dev Function to get all projects' contract addresses.
+      * @return A list of all projects' contract addreses
+      */
+    function returnMyOwnProjects() external view returns(Project[] memory){
+        //Project[] memory results;
+        //uint j = 0;
+       
+        //for(uint i = 0 ; i<projects.length; i++) {
+          //if( msg.sender == projects[i].creator()) {
+            //  results[j++] = projects[i];
+         //}
+        //}
+        //return results;
+        return projects;
+    }
+}
 
 contract Project {
     using SafeMath for uint256;
@@ -74,6 +92,17 @@ contract Project {
         Expired,
         Successful
     }
+
+    struct Request{
+        string description;
+        uint value;
+        //address recipient;
+        bool complete;
+        uint approvalCount;
+        mapping(address => bool) approvals;
+    }
+    
+    Request[] private requests;
 
     // State variables
     address payable public creator;
@@ -205,7 +234,55 @@ contract Project {
         return true;
     }
 
-   
+
+    function isRequestsClosed() public view returns (bool) {
+        if(requests.length == 0) {
+            return true;
+        }
+
+        for(uint i = 0; i<requests.length; i++){
+            if(!requests[i].complete){
+              return false; //or whatever you want to do if it matches
+          }
+         else{
+               return true;
+             }
+         }
+       
+    }
+
+// Modifier to check if the function caller is the project creator
+    modifier isAllRequestsClosed() {
+        require(isRequestsClosed());
+        _;
+    }
+
+
+   //function createRequest(string calldata reqDescription, uint reqValue) external  {
+   function createRequest(string memory reqDescription, uint reqValue) public  returns (bool stat){
+        Request memory newRequest = Request({
+            description : reqDescription,
+            value: reqValue,
+            //recipient : recipient,
+            complete: false,
+            approvalCount: 0
+        });
+
+        requests.push(newRequest);
+        return true;
+    } 
+
+    function approveRequest() public{
+        Request storage request = requests[0];
+        
+        //require(approvers[msg.sender]);
+        //require(!request.approvals[msg.sender]);
+        
+        request.approvals[msg.sender] = true;
+        request.approvalCount++;
+    }
+
+ 
     function getDetails() public view returns 
     (
         address payable projectStarter,
@@ -217,7 +294,9 @@ contract Project {
         uint256 goalAmount,
         string memory projectImage,
         uint256 projectRentability,
-        uint256 minimalInvestment
+        uint256 minimalInvestment,
+        uint256 requestValue,
+        uint256 approvalsCount
     ) {
         projectStarter = creator;
         projectTitle = title;
@@ -229,5 +308,21 @@ contract Project {
         projectImage = image;
         projectRentability = rentability;
         minimalInvestment = minInvestment;
+        requestValue = requests.length >= 1 ? requests[0].value : 0;
+        approvalsCount = requests.length >= 1 ? requests[0].approvalCount : 0;
+
+    }
+
+    function getApprovals() public view returns (
+         bool approvedRequest
+    )
+    {
+        approvedRequest = false;
+        if(requests.length >= 1) {
+            if (requests[0].approvals[msg.sender]){
+                approvedRequest = true;
+            }
+        }
+
     }
 }

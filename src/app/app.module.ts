@@ -29,7 +29,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {MatMenuModule} from '@angular/material/menu'; 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatFileUploadModule } from 'angular-material-fileupload';
-
+import {MatIconModule} from '@angular/material/icon';
 
 import {
   MatAutocompleteModule,
@@ -42,7 +42,6 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
-  MatIconModule,
   MatListModule,
   MatNativeDateModule,
   MatPaginatorModule,
@@ -66,11 +65,14 @@ import { MenuComponent } from './menu/menu.component';
 import { InvestmentContractDialogComponent } from './investment-contract-dialog/investment-contract-dialog.component';
 import { InvestmentDialogComponent } from './investment-dialog/investment-dialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProjectOwnerComponent } from './projects/project-owner/project-owner.component';
+import { RequireMoneyDialogComponent } from './require-money-dialog/require-money-dialog.component';
 
 const routes: Routes = [
   { path: 'listprojects', component: ListProjectsComponent },
   { path: 'addprojects', component: AddProjectComponent },  
   { path: 'home', component: HomeComponent },
+  { path: 'projectOwner', component: ProjectOwnerComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'} 
 ];
 
@@ -83,7 +85,9 @@ const routes: Routes = [
     MenuComponent,
     InvestmentContractDialogComponent,
     InvestmentDialogComponent,
-    FooterComponent
+    FooterComponent,
+    ProjectOwnerComponent,
+    RequireMoneyDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -108,7 +112,8 @@ const routes: Routes = [
     MaterialFileInputModule,
     MatFileUploadModule,
     MatDialogModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatIconModule
   ],
   providers: [ProjectService, 
               StyleUtils,
@@ -123,7 +128,7 @@ const routes: Routes = [
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   
   entryComponents: [InvestmentContractDialogComponent,
-                   InvestmentDialogComponent]
+                   InvestmentDialogComponent, RequireMoneyDialogComponent]
   
 })
 export class AppModule { }

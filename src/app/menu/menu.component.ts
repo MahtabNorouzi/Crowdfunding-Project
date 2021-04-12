@@ -25,4 +25,8 @@ export class MenuComponent implements OnInit {
     this.route.navigate(['/addprojects']);
   }
 
+  redirectProjectOwner(){
+    this.route.navigate(['/projectOwner']);
+  }
+
 }
